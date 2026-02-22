@@ -52,6 +52,60 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Flagship Project 1: HiveMind Swarm AI */}
+        <section className="md:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Brain className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">HiveMind: LLM-Driven Swarm Intelligence</h2>
+          <p className="text-gray-400 leading-relaxed mb-6">
+            Real-time multi-agent physics simulation bridging classical Boids algorithms with a local neural network Overmind. Engineered a multi-threaded architecture to query a quantized Phi-3 model without dropping the 60 FPS physics engine. The foundation for optimizing sports referee line-of-sight.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            {['PyGame', 'Vector Math', 'Local LLMs', 'Multi-Threading'].map(t => (
+              <span key={t} className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded">{t}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* Project 2: Edge Vision Analytics */}
+        <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Terminal className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">Edge Vision</h2>
+          <p className="text-gray-400 text-sm mb-6">
+            Real-time object detection paired with semantic scene understanding, running entirely on local consumer hardware.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">YOLOv8</span>
+            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">Moondream2</span>
+          </div>
+        </section>
+
+        {/* Project 3: MRI Analysis (Updated) */}
+        <section className="md:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Bug className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">Brain Tumor MRI Analysis</h2>
+          <p className="text-gray-400 leading-relaxed mb-6">
+            Deep learning pipeline leveraging CNNs for automated brain tumor detection. Designed and trained custom models directly on the Kaggle MRI dataset using data augmentation and transfer learning.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            {['CNN', 'Medical AI', 'PyTorch'].map(t => (
+              <span key={t} className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded">{t}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* Project 4: Offline RAG */}
+        <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Terminal className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">Offline RAG</h2>
+          <p className="text-gray-400 text-sm mb-6">
+            Privacy-first document retrieval assistant utilizing ChromaDB and lightweight embedding models for offline technical paper analysis.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">LangChain</span>
+            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">ChromaDB</span>
+          </div>
+        </section>
+
         {/* OrbiScholar Section */}
         <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
           <Building2 className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
