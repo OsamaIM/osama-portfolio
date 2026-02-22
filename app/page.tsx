@@ -1,65 +1,113 @@
-import Image from "next/image";
+import React from 'react';
+import { Github, Linkedin, Mail, Brain, Bug, Building2, Terminal } from 'lucide-react';
 
-export default function Home() {
+export default function Portfolio() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-[#0a0a0a] text-white p-6 md:p-12 font-sans">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Header Section */}
+        <header className="md:col-span-3 mb-8">
+          <p className="text-cyan-400 text-sm font-mono mb-2 flex items-center gap-2">
+            <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span> PORTFOLIO
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+          <h1 className="text-5xl font-bold mb-4">Osama Ibn Mahfuz</h1>
+          <p className="text-xl text-gray-400">
+            Student at <span className="text-cyan-400">Shanghai University of Engineering Science</span>
+          </p>
+          <div className="flex gap-3 mt-4">
+            {['AI Engineering', 'Deep Learning', 'Computer Vision'].map((tag) => (
+              <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-400">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </header>
+
+        {/* Project 1: MRI Analysis */}
+        <section className="md:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Brain className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">Brain Tumor MRI Analysis</h2>
+          <p className="text-gray-400 leading-relaxed mb-6">
+            Deep learning pipeline leveraging CNNs for automated brain tumor detection. 
+            Trained on the Kaggle MRI dataset using custom data augmentation and transfer learning.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            {['CNN', 'Medical AI', 'PyTorch'].map(t => (
+              <span key={t} className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded">{t}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* Project 2: Swarm Intelligence */}
+        <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Bug className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">Swarm Intelligence</h2>
+          <p className="text-gray-400 text-sm mb-6">
+            Optimizing referee positioning using bio-inspired algorithms. Exploring PSO for accuracy and energy efficiency.
+          </p>
+          <div className="flex gap-2">
+            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">Optimization</span>
+            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">PSO</span>
+          </div>
+        </section>
+
+        {/* OrbiScholar Section */}
+        <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+          <Building2 className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
+          <h2 className="text-2xl font-bold mb-4">OrbiScholar</h2>
+          <p className="text-gray-400 text-sm mb-6">
+            Empowering Bangladeshi students to pursue higher education in China through streamlined admission services.
+          </p>
+          <a href="#" className="text-cyan-400 text-sm hover:underline flex items-center gap-2">
+            Learn more <span>-&gt;</span>
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        </section>
+
+        {/* Tech Stack */}
+        <section className="bg-white/5 border border-white/10 rounded-3xl p-8">
+          <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Tech Stack</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
+              <Terminal size={20} className="text-cyan-400" />
+              <span className="text-xs">Python</span>
+            </div>
+            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
+              <span className="text-cyan-400 font-bold">🔥</span>
+              <span className="text-xs">PyTorch</span>
+            </div>
+            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
+              <span className="text-cyan-400 font-bold">🐧</span>
+              <span className="text-xs">Linux</span>
+            </div>
+            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
+              <span className="text-cyan-400 font-bold">⚛️</span>
+              <span className="text-xs">React</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Current Status */}
+        <section className="bg-white/5 border border-white/10 rounded-3xl p-8">
+           <div className="flex items-center gap-2 mb-4">
+             <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+             <span className="text-xs uppercase tracking-widest text-gray-500">Currently</span>
+           </div>
+           <h3 className="text-xl font-bold mb-2">Studying AI Engineering</h3>
+           <p className="text-gray-400 text-sm">
+             Exploring deep learning architectures and intelligent systems at SUES in China.
+           </p>
+        </section>
+      </div>
+
+      <footer className="mt-20 flex flex-col items-center gap-6">
+        <div className="flex gap-6 text-gray-500">
+          <Github className="hover:text-white cursor-pointer" size={20} />
+          <Linkedin className="hover:text-white cursor-pointer" size={20} />
+          <Mail className="hover:text-white cursor-pointer" size={20} />
         </div>
-      </main>
-    </div>
+        <p className="text-gray-600 text-xs font-mono">Osama Ibn Mahfuz 2026</p>
+      </footer>
+    </main>
   );
 }
