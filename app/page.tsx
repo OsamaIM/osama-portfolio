@@ -59,11 +59,15 @@ export default function Portfolio() {
           <p className="text-gray-400 leading-relaxed mb-6">
             Real-time multi-agent physics simulation bridging classical Boids algorithms with a local neural network Overmind. Engineered a multi-threaded architecture to query a quantized Phi-3 model without dropping the 60 FPS physics engine. The foundation for optimizing sports referee line-of-sight.
           </p>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap mb-6">
             {['PyGame', 'Vector Math', 'Local LLMs', 'Multi-Threading'].map(t => (
               <span key={t} className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded">{t}</span>
             ))}
           </div>
+          {/* GitHub Link */}
+          <a href="https://github.com/OsamaIM/HiveMind-Swarm" target="_blank" rel="noopener noreferrer" className="text-cyan-400 text-sm hover:underline flex items-center gap-2 w-fit">
+            <Github size={16} /> View Code on GitHub <span>-&gt;</span>
+          </a>
         </section>
 
         {/* Project 2: Edge Vision Analytics */}
