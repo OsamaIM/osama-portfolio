@@ -24,20 +24,24 @@ export default function Portfolio() {
           </div>
         </header>
 
-        {/* Project 1: MRI Analysis */}
-        <section className="md:col-span-2 bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
+        {/* Project 1: MRI Analysis (Clickable Card) */}
+        <a 
+          href="https://github.com/OsamaIM/BRAIN_MRI_PROJECT" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="md:col-span-2 block bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group cursor-pointer"
+        >
           <Brain className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
-          <h2 className="text-2xl font-bold mb-4">Brain Tumor MRI Analysis</h2>
+          <h2 className="text-2xl font-bold mb-4 group-hover:text-cyan-400 transition-colors">Brain Tumor MRI Analysis</h2>
           <p className="text-gray-400 leading-relaxed mb-6">
-            Deep learning pipeline leveraging CNNs for automated brain tumor detection. 
-            Trained on the Kaggle MRI dataset using custom data augmentation and transfer learning.
+            Deep learning pipeline leveraging CNNs for automated brain tumor detection. Designed and trained custom models directly on the Kaggle MRI dataset using data augmentation and transfer learning.
           </p>
           <div className="flex gap-2 flex-wrap">
             {['CNN', 'Medical AI', 'PyTorch'].map(t => (
-              <span key={t} className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded">{t}</span>
+              <span key={t} className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded text-white">{t}</span>
             ))}
           </div>
-        </section>
+        </a>
 
         {/* Project 2: Swarm Intelligence */}
         <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
