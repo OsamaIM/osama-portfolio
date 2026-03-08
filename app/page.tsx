@@ -8,16 +8,29 @@ export default function Portfolio() {
     // We added a custom Tailwind grid background here
     <main className="min-h-screen bg-black text-white font-sans relative overflow-x-hidden selection:bg-cyan-900 selection:text-cyan-50">
       
-      {/* Futuristic AI Glowing Aurora Background */}
+      {/* Custom Animation Keyframes */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes blob {
+          0% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+          100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob { animation: blob 15s infinite alternate ease-in-out; }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+      `}} />
+
+      {/* Animated AI Glowing Aurora Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Deep Indigo glow on the top left */}
-        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-indigo-900/20 blur-[120px] mix-blend-screen"></div>
+        {/* Deep Indigo glow */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-indigo-900/30 blur-[120px] mix-blend-screen animate-blob"></div>
         
-        {/* Cyan glow on the bottom right */}
-        <div className="absolute bottom-[-10%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-cyan-900/10 blur-[150px] mix-blend-screen"></div>
+        {/* Cyan glow - delayed so they don't move exactly the same */}
+        <div className="absolute bottom-[-10%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-cyan-900/20 blur-[150px] mix-blend-screen animate-blob animation-delay-2000"></div>
         
-        {/* Subtle purple glow in the middle to bridge them */}
-        <div className="absolute top-[40%] left-[50%] w-[30vw] h-[30vw] rounded-full bg-purple-900/10 blur-[120px] mix-blend-screen"></div>
+        {/* Subtle purple glow in the middle */}
+        <div className="absolute top-[40%] left-[50%] w-[30vw] h-[30vw] rounded-full bg-purple-900/20 blur-[120px] mix-blend-screen animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Main Content Container */}
