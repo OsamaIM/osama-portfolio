@@ -1,9 +1,14 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import { Github, Linkedin, Mail, Brain, Bug, Building2, Terminal } from 'lucide-react';
-
+import { Code, BrainCircuit, Scan, Network, Share2, Cpu, GitBranch, TerminalSquare, Database, MapPin, Target, Monitor } from 'lucide-react';
 import {  FileText, Sparkles } from 'lucide-react'; // Make sure you have these imported!
-
+import dynamic from 'next/dynamic';
+const MRIAnalyzer = dynamic(() => import('./components/MRIAnalyzer'), { ssr: false });
+const SwarmSimulation = dynamic(() => import('./components/SwarmSimulation'), { ssr: false });
 export default function Portfolio() {
+  const [showMRI, setShowMRI] = useState(false);
+  const [showHiveMind, setShowHiveMind] = useState(false);
   return (
     // We added a custom Tailwind grid background here
     <main className="min-h-screen bg-black text-white font-sans relative overflow-x-hidden selection:bg-cyan-900 selection:text-cyan-50">
@@ -95,6 +100,7 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
+          
 
           {/* Right Column: Profile Image */}
           <div className="flex justify-center md:justify-end">
@@ -126,53 +132,135 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Project 1: Brain MRI */}
-            <a 
-              href="https://github.com/OsamaIM/BRAIN_MRI_PROJECT" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 hover:border-white/20 transition-all group"
+            {/* Project 1: Brain MRI (Interactive Expanding Bento) */}
+            <div 
+              className={`bg-[#0a0a0a] border border-white/10 rounded-2xl transition-all duration-500 overflow-hidden relative ${
+                showMRI ? 'md:col-span-2 lg:col-span-3 ring-1 ring-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.15)] p-6' : 'hover:border-white/20 cursor-pointer group p-3'
+              }`}
+              onClick={() => !showMRI && setShowMRI(true)}
             >
-              {/* Image Container (Replace gradient with an <img /> later) */}
-              <div className="w-full h-48 bg-gradient-to-br from-blue-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
-                 <Brain size={48} className="text-blue-500/50 group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              {/* Colorful Tags */}
-              <div className="flex gap-2 mb-3 px-1 flex-wrap">
-                <span className="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">CNN</span>
-                <span className="bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyTorch</span>
-                <span className="bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Medical AI</span>
-              </div>
-              {/* Text */}
-              <div className="px-1 pb-2">
-                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Brain Tumor MRI</h3>
-                <p className="text-sm text-gray-400 line-clamp-2">Deep learning pipeline leveraging CNNs for automated brain tumor detection using data augmentation.</p>
-              </div>
-            </a>
+              {!showMRI ? (
+                // --- NORMAL COMPACT VIEW ---
+                <>
+                  <div className="w-full h-48 bg-linear-to-br from-blue-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
+                     <Brain size={48} className="text-blue-500/50 group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <div className="flex gap-2 mb-3 px-1 flex-wrap">
+                    <span className="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">CNN</span>
+                    <span className="bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyTorch</span>
+                    <span className="bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Medical AI</span>
+                  </div>
+                  <div className="px-1 pb-2">
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Brain Tumor MRI</h3>
+                    <p className="text-sm text-gray-400 line-clamp-2">Deep learning pipeline leveraging CNNs for automated brain tumor detection using data augmentation.</p>
+                  </div>
+                </>
+              ) : (
+                // --- EXPANDED ENGINE VIEW ---
+                <div className="flex flex-col md:flex-row gap-8 relative animate-in fade-in zoom-in duration-300">
+                  {/* Close Button */}
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setShowMRI(false); }}
+                    className="absolute -top-2 -right-2 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors z-20"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </button>
 
-            {/* Project 2: HiveMind */}
-            <a 
-              href="https://github.com/OsamaIM/HiveMind-Swarm" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 hover:border-white/20 transition-all group"
+                  {/* Left Side: Info & GitHub Pinned Link */}
+                  <div className="flex-1 py-2 flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-4">
+                       <Brain size={32} className="text-cyan-400" />
+                       <h3 className="text-3xl font-bold text-white tracking-tight">Brain Tumor MRI</h3>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+                      Test my lightweight YOLO-inspired model directly in your browser. This architecture achieved <strong className="text-cyan-400">95.04% accuracy</strong> utilizing only ~107k parameters, outperforming heavy ResNet models. It runs entirely via ONNX WebAssembly, requiring zero backend compute.
+                    </p>
+                    
+                    <div>
+                      <a 
+                        href="https://github.com/OsamaIM/BRAIN_MRI_PROJECT" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[#0f1115] hover:bg-white/10 border border-white/10 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all hover:border-cyan-500/50 group/btn"
+                      >
+                        <Github size={18} className="group-hover/btn:text-cyan-400 transition-colors" /> 
+                        View Source Code
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Side: The Interactive Engine */}
+                  <div className="flex-1 flex justify-center w-full">
+                    <MRIAnalyzer />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Project 2: HiveMind (Interactive Expanding Bento) */}
+            <div 
+              className={`bg-[#0a0a0a] border border-white/10 rounded-2xl transition-all duration-500 overflow-hidden relative ${
+                showHiveMind ? 'md:col-span-2 lg:col-span-3 ring-1 ring-pink-500/50 shadow-[0_0_30px_rgba(236,72,153,0.15)] p-6' : 'hover:border-white/20 cursor-pointer group p-3'
+              }`}
+              onClick={() => !showHiveMind && setShowHiveMind(true)}
             >
-              {/* Image Container */}
-              <div className="w-full h-48 bg-gradient-to-br from-pink-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
-                 <Sparkles size={48} className="text-pink-500/50 group-hover:scale-110 transition-transform duration-500" />
-              </div>
-              {/* Colorful Tags */}
-              <div className="flex gap-2 mb-3 px-1 flex-wrap">
-                <span className="bg-pink-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Local LLMs</span>
-                <span className="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyGame</span>
-                <span className="bg-indigo-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Swarm AI</span>
-              </div>
-              {/* Text */}
-              <div className="px-1 pb-2">
-                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">HiveMind</h3>
-                <p className="text-sm text-gray-400 line-clamp-2">Real-time multi-agent physics simulation bridging classical algorithms with local neural networks.</p>
-              </div>
-            </a>
+              {!showHiveMind ? (
+                // --- NORMAL COMPACT VIEW ---
+                <>
+                  <div className="w-full h-48 bg-linear-to-br from-pink-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
+                     <Sparkles size={48} className="text-pink-500/50 group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <div className="flex gap-2 mb-3 px-1 flex-wrap">
+                    <span className="bg-pink-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Local LLMs</span>
+                    <span className="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyGame</span>
+                    <span className="bg-indigo-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Swarm AI</span>
+                  </div>
+                  <div className="px-1 pb-2">
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-pink-400 transition-colors">HiveMind</h3>
+                    <p className="text-sm text-gray-400 line-clamp-2">Real-time multi-agent physics simulation bridging classical algorithms with local neural networks.</p>
+                  </div>
+                </>
+              ) : (
+                // --- EXPANDED ENGINE VIEW ---
+                <div className="flex flex-col md:flex-row gap-8 relative animate-in fade-in zoom-in duration-300">
+                  {/* Close Button */}
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setShowHiveMind(false); }}
+                    className="absolute -top-2 -right-2 p-2 text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full transition-colors z-20"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </button>
+
+                  {/* Left Side: Info & GitHub Pinned Link */}
+                  <div className="flex-1 py-2 flex flex-col justify-center">
+                    <div className="flex items-center gap-3 mb-4">
+                       <Sparkles size={32} className="text-pink-400" />
+                       <h3 className="text-3xl font-bold text-white tracking-tight">HiveMind</h3>
+                    </div>
+                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+                      A real-time exploration of swarm intelligence. This engine bridges classical optimization algorithms with decentralized neural networks. Hover your mouse over the simulation to see the active agents swarm and dynamically re-route their network connections.
+                    </p>
+                    
+                    <div>
+                      <a 
+                        href="https://github.com/OsamaIM/HiveMind-Swarm" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[#0f1115] hover:bg-white/10 border border-white/10 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all hover:border-pink-500/50 group/btn"
+                      >
+                        <Github size={18} className="group-hover/btn:text-pink-400 transition-colors" /> 
+                        View Source Code
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Right Side: The Interactive Swarm Canvas */}
+                  <div className="flex-1 w-full flex justify-center items-center">
+                     <SwarmSimulation />
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Project 3: Edge Vision */}
             <a 
@@ -182,7 +270,7 @@ export default function Portfolio() {
               className="block bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 hover:border-white/20 transition-all group"
             >
               {/* Image Container */}
-              <div className="w-full h-48 bg-gradient-to-br from-green-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
+              <div className="w-full h-48 bg-linear-to-br from-green-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
                  <Terminal size={48} className="text-green-500/50 group-hover:scale-110 transition-transform duration-500" />
               </div>
               {/* Colorful Tags */}
@@ -214,40 +302,98 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* OrbiScholar Section */}
-        <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
-          <Building2 className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
-          <h2 className="text-2xl font-bold mb-4">OrbiScholar</h2>
-          <p className="text-gray-400 text-sm mb-6">
-            Empowering Bangladeshi students to pursue higher education in China through streamlined admission services.
-          </p>
-          <a href="#" className="text-cyan-400 text-sm hover:underline flex items-center gap-2">
-            Learn more <span>-&gt;</span>
-          </a>
-        </section>
 
-        {/* Tech Stack */}
-        <section className="bg-white/5 border border-white/10 rounded-3xl p-8">
-          <h3 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Tech Stack</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
-              <Terminal size={20} className="text-cyan-400" />
-              <span className="text-xs">Python</span>
+        {/* --- THE RIG SECTION --- */}
+      <section className="py-16 max-w-6xl mx-auto px-6 relative z-10">
+        <div className="bg-[#0a0a0a] border border-purple-500/20 rounded-3xl p-8 md:p-12 hover:border-purple-500/40 transition-all group relative overflow-hidden flex flex-col md:flex-row items-center gap-10">
+          
+          {/* Animated Futuristic Grid Background */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#805ad510_1px,transparent_1px),linear-gradient(to_bottom,#805ad510_1px,transparent_1px)] bg-size-[24px_24px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50"></div>
+          <div className="absolute -right-20 -top-20 w-72 h-72 bg-purple-600/10 blur-[100px] rounded-full group-hover:bg-purple-600/20 transition-all duration-700"></div>
+
+          {/* Left Side: Stats */}
+          <div className="relative z-10 flex-1 w-full">
+            <div className="flex items-center gap-3 mb-6">
+              <Cpu className="text-purple-400" size={28} />
+              <h3 className="text-3xl font-bold text-white tracking-tight">The Rig</h3>
             </div>
-            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
-              <span className="text-cyan-400 font-bold">🔥</span>
-              <span className="text-xs">PyTorch</span>
-            </div>
-            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
-              <span className="text-cyan-400 font-bold">🐧</span>
-              <span className="text-xs">Linux</span>
-            </div>
-            <div className="bg-white/5 p-4 rounded-xl flex flex-col items-center gap-2 border border-white/5">
-              <span className="text-cyan-400 font-bold">⚛️</span>
-              <span className="text-xs">React</span>
-            </div>
+            <p className="text-gray-400 mb-8 max-w-md text-base leading-relaxed">
+              My daily driver for training local neural networks and compiling code.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
+              <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><TerminalSquare className="text-purple-400" size={16}/> <span><strong>OS:</strong> Triple-Boot (Fedora, Ubuntu, Win 11)</span></li>
+              <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><Monitor className="text-purple-400" size={16}/> <span><strong>GPU:</strong> NVIDIA RTX 3060 6GB</span></li>
+              <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><Cpu className="text-purple-400" size={16}/> <span><strong>CPU:</strong> Intel Core i7 10th Gen</span></li>
+              <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><BrainCircuit className="text-purple-400" size={16}/> <span><strong>Memory:</strong> 16GB RAM / 1TB SSD</span></li>
+            </ul>
           </div>
-        </section>
+
+          {/* Right Side: Futuristic Spinning Core */}
+          <div className="relative z-10 w-full md:w-1/3 flex justify-center py-8">
+             <div className="w-48 h-48 rounded-full border border-purple-500/20 flex items-center justify-center relative animate-[spin_10s_linear_infinite]">
+               <div className="w-32 h-32 rounded-full border-2 border-transparent border-t-cyan-400 border-b-purple-400 flex items-center justify-center animate-[spin_4s_linear_infinite_reverse]">
+                  <div className="w-16 h-16 rounded-full bg-purple-500/20 blur-md absolute"></div>
+                  <Database className="text-cyan-300 w-8 h-8 absolute animate-pulse" />
+               </div>
+             </div>
+          </div>
+
+        </div>
+      </section>
+      
+
+        {/* --- TECH STACK (Animated Marquee) --- */}
+      <section className="py-16 max-w-6xl mx-auto px-6 relative z-10 w-full overflow-hidden">
+        <h3 className="text-sm font-bold tracking-widest text-gray-400 uppercase mb-8">Tech Stack & Arsenal</h3>
+        
+        {/* Custom Animation Keyframes for the Marquee */}
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        `}} />
+
+        {/* The Marquee Container */}
+        <div className="relative flex overflow-x-hidden">
+          {/* We use w-max to prevent wrapping, and animate-marquee to trigger the CSS */}
+          <div className="flex w-max animate-marquee gap-4 pr-4">
+             {/* We double the array so the scroll loops seamlessly! */}
+             {[
+               { icon: <Terminal size={20}/>, name: "Python", color: "text-blue-400" },
+               { icon: <Code size={20}/>, name: "Next.js / React", color: "text-cyan-400" },
+               { icon: <BrainCircuit size={20}/>, name: "PyTorch / TensorFlow", color: "text-orange-400" },
+               { icon: <Scan size={20}/>, name: "YOLO & ResNet", color: "text-emerald-400" },
+               { icon: <Network size={20}/>, name: "SimpleCNN", color: "text-purple-400" },
+               { icon: <Share2 size={20}/>, name: "Swarm Intelligence", color: "text-indigo-400" },
+               { icon: <Cpu size={20}/>, name: "WebGPU / WebLLM", color: "text-pink-400" },
+               { icon: <GitBranch size={20}/>, name: "Git / Kaggle API", color: "text-red-400" },
+               { icon: <TerminalSquare size={20}/>, name: "Linux", color: "text-white" },
+               // Duplicated items start here for the infinite loop
+               { icon: <Terminal size={20}/>, name: "Python", color: "text-blue-400" },
+               { icon: <Code size={20}/>, name: "Next.js / React", color: "text-cyan-400" },
+               { icon: <BrainCircuit size={20}/>, name: "PyTorch / TensorFlow", color: "text-orange-400" },
+               { icon: <Scan size={20}/>, name: "YOLO & ResNet", color: "text-emerald-400" },
+               { icon: <Network size={20}/>, name: "SimpleCNN", color: "text-purple-400" },
+               { icon: <Share2 size={20}/>, name: "Swarm Intelligence", color: "text-indigo-400" },
+               { icon: <Cpu size={20}/>, name: "WebGPU / WebLLM", color: "text-pink-400" },
+               { icon: <GitBranch size={20}/>, name: "Git / Kaggle API", color: "text-red-400" },
+               { icon: <TerminalSquare size={20}/>, name: "Linux", color: "text-white" },
+             ].map((tech, i) => (
+                <div key={i} className="flex items-center gap-3 bg-[#0f1115] border border-white/5 px-6 py-4 rounded-2xl whitespace-nowrap hover:bg-white/10 transition-colors cursor-pointer">
+                  <span className={tech.color}>{tech.icon}</span>
+                  <span className="text-gray-300 font-medium">{tech.name}</span>
+                </div>
+             ))}
+          </div>
+        </div>
+      </section>
 
         {/* Current Status */}
         <section className="bg-white/5 border border-white/10 rounded-3xl p-8">
@@ -260,17 +406,47 @@ export default function Portfolio() {
              Exploring deep learning architectures and intelligent systems at SUES in China.
            </p>
         </section>
-        {/* --- STARTUP SECTION --- */}
-        <div id="startup" className="mt-32 min-h-[50vh]">
-          <h2 className="text-3xl font-bold mb-6">Startup & Ventures</h2>
-          <p className="text-gray-400">Details about my business initiatives coming soon...</p>
+    
+
+        {/* --- ABOUT ME SECTION --- */}
+      <section id="about" className="py-24 max-w-6xl mx-auto px-6 relative z-10 mt-12">
+        
+        {/* Section Header matching your placeholder */}
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">About Me</h2>
+          <p className="text-gray-400 text-lg">My background and journey.</p>
         </div>
 
-        {/* --- ABOUT SECTION --- */}
-        <div id="about" className="mt-32 min-h-[50vh]">
-          <h2 className="text-3xl font-bold mb-6">About Me</h2>
-          <p className="text-gray-400">More about my background and journey coming soon...</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Box 1: The Origin Story */}
+          <div className="bg-[#0f1115] border border-white/5 rounded-3xl p-8 hover:border-cyan-500/30 transition-colors group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 blur-3xl rounded-full pointer-events-none group-hover:bg-cyan-500/10 transition-colors duration-700"></div>
+            <MapPin className="text-cyan-400 mb-6" size={32} />
+            <h3 className="text-2xl font-bold text-white mb-4">From the Hill Tracts to the Global Stage</h3>
+            <p className="text-gray-400 leading-relaxed mb-4 text-sm">
+              My journey started in Bandarban, one of the most famous and beautiful hill tract districts of Bangladesh, where I was born and raised. In 2018, I relocated to the capital to attend Notre Dame College Dhaka—the #1 ranked institution in the country.
+            </p>
+            <p className="text-gray-400 leading-relaxed text-sm">
+              After securing perfect results in my higher secondary exams, I set my sights globally. In September 2023, I moved to China to study at Shanghai University of Engineering Science (SUES), diving headfirst into the epicenter of modern artificial intelligence and cross-border innovation.
+            </p>
+          </div>
+
+          {/* Box 2: The Mission */}
+          <div className="bg-indigo-900/10 border border-indigo-500/20 rounded-3xl p-8 hover:border-indigo-500/40 transition-colors group relative overflow-hidden">
+            <div className="absolute right-0 bottom-0 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none group-hover:bg-indigo-500/20 transition-colors duration-700"></div>
+            <Target className="text-indigo-400 mb-6" size={32} />
+            <h3 className="text-2xl font-bold text-white mb-4">The Mission</h3>
+            <p className="text-indigo-100/70 leading-relaxed mb-6 text-sm">
+              Technology is only as valuable as the people it empowers. My focus is entirely on democratization—whether that means engineering lightweight CNNs for crucial medical imaging, coding local AI agents that protect mental focus, or building automated platforms that open doors.
+            </p>
+            <p className="text-indigo-100/70 leading-relaxed text-sm">
+              With <strong className="text-white">OrbiScholar</strong>, I am taking the analytical problem-solving of engineering and applying it directly to human logistics: breaking down international barriers so brilliant students from Bangladesh can access world-class education in China. 
+            </p>
+          </div>
+
         </div>
+      </section>
       </div>
 
       <footer className="mt-20 flex flex-col items-center gap-6">
