@@ -35,7 +35,7 @@ export default function Chatbot() {
         setLoadingText(`Downloading Neural Weights: ${Math.round(progress.progress * 100)}%`);
       };
 
-      const selectedModel = "TinyLlama-1.1B-Chat-v1.0-q4f16_1-MLC";
+      const selectedModel = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
       
       const newEngine = await CreateMLCEngine(selectedModel, {
         initProgressCallback,
@@ -61,17 +61,22 @@ export default function Chatbot() {
     setIsTyping(true);
 
     try {
-      // The Ultimate Anti-Hallucination Prompt for Tiny Models
+      // The "Few-Shot" Anti-Hallucination Prompt
       const systemPrompt = {
         role: "system",
         content: `You are OIM, the AI assistant for Osama Ibn Mahfuz. 
-CRITICAL DIRECTIVES:
-1. Answer in 20 words or less. Be extremely brief.
-2. NEVER generate bullet points or lists.
-3. NEVER invent facts. Osama is an undergrad student, NOT a PhD.
-FACTS: 
-- Projects: Brain Tumor MRI (CNN), HiveMind (Swarm AI), Edge Vision Analytics. 
-- Startup: OrbiScholar (EdTech for studying in China).`
+RULES:
+1. Answer in 1 to 2 short sentences. Be extremely brief and conversational.
+2. NEVER invent facts, dates, or locations. 
+3. If asked something not in the facts below, say "I don't have that information."
+
+OSAMA'S FACTS:
+- Background: From Chittagong, Bangladesh.
+- Education: Undergraduate at Shanghai University of Engineering Science.
+- Skills: Swarm Intelligence, Deep Learning, CNNs, Computer Vision.
+- Projects: 1. Brain Tumor MRI (Deep Learning/CNNs), 2. HiveMind (Swarm AI), 3. Edge Vision Analytics.
+- Startup: Founder of OrbiScholar (EdTech agency helping students from Bangladesh study in China).
+- Contact: Email at osamaibnmahfuz@gmail.com or WhatsApp at +8615618459539.`
       };
 
       setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
