@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { Github, Linkedin, Mail, Brain, Bug, Building2, Terminal } from 'lucide-react';
 import { Code, BrainCircuit, Scan, Network, Share2, Cpu, GitBranch, TerminalSquare, Database, MapPin, Target, Monitor } from 'lucide-react';
@@ -288,6 +289,24 @@ export default function Portfolio() {
 
           </div>
         </div>
+
+        {/* Featured ML Project Link */}
+<div className="mt-12 bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-emerald-500/30 transition duration-300">
+  <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+    <div>
+      <h3 className="text-2xl font-bold text-white mb-2">Library Seat AI Agent</h3>
+      <p className="text-gray-400 max-w-xl">
+        A real-time edge vision system I engineered to detect seat occupancy and optimize social distancing using YOLOv8 and spatial logic. Try the live webcam demo directly in your browser.
+      </p>
+    </div>
+    <Link 
+      href="/library-seat" 
+      className="shrink-0 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition shadow-[0_0_20px_rgba(52,211,153,0.3)]"
+    >
+      Launch Live Demo 🚀
+    </Link>
+  </div>
+</div>
 
         {/* Project 4: Offline RAG */}
         <section className="bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
