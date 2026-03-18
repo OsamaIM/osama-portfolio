@@ -14,6 +14,7 @@ export default function Portfolio() {
   const [showMRI, setShowMRI] = useState(false);
   const [showHiveMind, setShowHiveMind] = useState(false);
   const [activeNode, setActiveNode] = useState<string | null>(null);
+  const [showOSMenu, setShowOSMenu] = useState(false);
 
   // Core Data & Exact Tailwind Classes for the About Constellation
   const aboutData = {
@@ -444,39 +445,110 @@ export default function Portfolio() {
           </div>
         </a>
 
-        {/* --- THE RIG SECTION --- */}
-        <section className="py-16 relative z-10 mt-12">
-          <div className="bg-[#0a0a0a] border border-purple-500/20 rounded-3xl p-8 md:p-12 hover:border-purple-500/40 transition-all group relative overflow-hidden flex flex-col md:flex-row items-center gap-10">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#805ad510_1px,transparent_1px),linear-gradient(to_bottom,#805ad510_1px,transparent_1px)] bg-size-[24px_24px] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50"></div>
-            <div className="absolute -right-20 -top-20 w-72 h-72 bg-purple-600/10 blur-[100px] rounded-full group-hover:bg-purple-600/20 transition-all duration-700"></div>
-
-            <div className="relative z-10 flex-1 w-full">
-              <div className="flex items-center gap-3 mb-6">
-                <Cpu className="text-purple-400" size={28} />
-                <h3 className="text-3xl font-bold text-white tracking-tight">The Rig</h3>
+       {/* --- THE RIG SECTION (Compact Cyberpunk Ribbon - Overflow Fixed) --- */}
+        <section className="py-8 relative z-20 max-w-6xl mx-auto px-6">
+          {/* Outer Gradient Border Wrapper - REMOVED overflow-hidden */}
+          <div className="relative rounded-3xl p-px bg-linear-to-r from-cyan-500/50 via-purple-600/50 to-pink-500/50 group hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-shadow duration-700">
+            
+            {/* Main Container - REMOVED overflow-hidden */}
+            <div className="bg-[#05050a] rounded-[1.4rem] p-5 md:p-6 relative flex flex-col lg:flex-row items-center justify-between gap-6">
+              
+              {/* Background Effects Wrapper - ISOLATED overflow-hidden so it doesn't clip the menu */}
+              <div className="absolute inset-0 rounded-[1.4rem] overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ff1_1px,transparent_1px),linear-gradient(to_bottom,#0ff1_1px,transparent_1px)] bg-size-[2rem_2rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] opacity-20"></div>
+                <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-cyan-600/20 blur-[80px] rounded-full mix-blend-screen"></div>
               </div>
-              <p className="text-gray-400 mb-8 max-w-md text-base leading-relaxed">
-                My daily driver for training local neural networks and compiling code.
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-300">
-                <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><TerminalSquare className="text-purple-400" size={16}/> <span><strong>OS:</strong> Triple-Boot (Fedora, Ubuntu, Win 11)</span></li>
-                <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><Monitor className="text-purple-400" size={16}/> <span><strong>GPU:</strong> NVIDIA RTX 3060 6GB</span></li>
-                <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><Cpu className="text-purple-400" size={16}/> <span><strong>CPU:</strong> Intel Core i7 10th Gen</span></li>
-                <li className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5 hover:bg-white/10 transition-colors"><BrainCircuit className="text-purple-400" size={16}/> <span><strong>Memory:</strong> 16GB RAM / 1TB SSD</span></li>
-              </ul>
-            </div>
 
-            <div className="relative z-10 w-full md:w-1/3 flex justify-center py-8">
-               <div className="w-48 h-48 rounded-full border border-purple-500/20 flex items-center justify-center relative animate-[spin_10s_linear_infinite]">
-                 <div className="w-32 h-32 rounded-full border-2 border-transparent border-t-cyan-400 border-b-purple-400 flex items-center justify-center animate-[spin_4s_linear_infinite_reverse]">
-                    <div className="w-16 h-16 rounded-full bg-purple-500/20 blur-md absolute"></div>
-                    <Database className="text-cyan-300 w-8 h-8 absolute animate-pulse" />
+              {/* Left Side: Header & Micro-Cards */}
+              <div className="relative z-10 flex-1 w-full">
+                
+                {/* Header (Compact) */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-white/5 rounded-lg border border-white/10 shadow-[0_0_10px_rgba(255,255,255,0.05)]">
+                    <Cpu className="text-white" size={18} />
+                  </div>
+                  <h3 className="text-2xl font-black text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-white to-pink-400 tracking-tight uppercase">
+                    The Rig
+                  </h3>
+                  <span className="text-[9px] font-mono text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full ml-2 hidden sm:block bg-cyan-500/10">LOCAL_COMPUTE_NODE</span>
+                </div>
+
+                {/* Hardware Nodes (Micro-Grid) */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full relative">
+                  
+                  {/* OS Node (Interactive Clickable Menu) */}
+                  <div 
+                    onClick={() => setShowOSMenu(!showOSMenu)}
+                    onMouseLeave={() => setShowOSMenu(false)}
+                    className="relative flex items-center gap-3 bg-white/5 border border-white/5 p-3 rounded-xl hover:bg-white/10 hover:border-cyan-500/50 transition-all group/card cursor-pointer"
+                  >
+                    <TerminalSquare size={16} className="text-cyan-400 drop-shadow-[0_0_5px_#22d3ee]" />
+                    <div>
+                      <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold leading-none mb-1">OS</p>
+                      <p className="text-xs font-bold text-gray-200 leading-none group-hover/card:text-cyan-300 transition-colors">Triple-Boot ▾</p>
+                    </div>
+
+                    {/* The Clickable Boot Menu Popup */}
+                    {showOSMenu && (
+                      <div className="absolute top-[110%] left-0 w-48 bg-[#0a0a0f] border border-cyan-500/40 rounded-xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-100 backdrop-blur-xl">
+                        <p className="text-[9px] font-mono text-cyan-400 mb-3 border-b border-cyan-500/30 pb-2 uppercase tracking-widest">Select_Boot_Drive</p>
+                        <ul className="space-y-3 text-xs font-bold text-gray-300">
+                          <li className="flex items-center gap-3 hover:text-white transition-colors cursor-default">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_8px_#3b82f6]"></div> Fedora Linux
+                          </li>
+                          <li className="flex items-center gap-3 hover:text-white transition-colors cursor-default">
+                            <div className="w-2 h-2 bg-orange-500 rounded-full shadow-[0_0_8px_#f97316]"></div> Ubuntu 22.04
+                          </li>
+                          <li className="flex items-center gap-3 hover:text-white transition-colors cursor-default">
+                            <div className="w-2 h-2 bg-cyan-500 rounded-full shadow-[0_0_8px_#06b6d4]"></div> Windows 11
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-white/5 border border-white/5 p-3 rounded-xl hover:bg-white/10 hover:border-pink-500/50 transition-all group/card cursor-default">
+                    <Monitor size={16} className="text-pink-400 drop-shadow-[0_0_5px_#ec4899]" />
+                    <div>
+                      <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold leading-none mb-1">GPU</p>
+                      <p className="text-xs font-bold text-gray-200 leading-none">RTX 3060 6GB</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-white/5 border border-white/5 p-3 rounded-xl hover:bg-white/10 hover:border-purple-500/50 transition-all group/card cursor-default">
+                    <Cpu size={16} className="text-purple-400 drop-shadow-[0_0_5px_#a855f7]" />
+                    <div>
+                      <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold leading-none mb-1">CPU</p>
+                      <p className="text-xs font-bold text-gray-200 leading-none">i7 10th Gen</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-white/5 border border-white/5 p-3 rounded-xl hover:bg-white/10 hover:border-emerald-500/50 transition-all group/card cursor-default">
+                    <Database size={16} className="text-emerald-400 drop-shadow-[0_0_5px_#10b981]" />
+                    <div>
+                      <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold leading-none mb-1">RAM / ROM</p>
+                      <p className="text-xs font-bold text-gray-200 leading-none">16GB / 1TB</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Miniaturized Quantum Core */}
+              <div className="hidden lg:flex w-24 h-24 shrink-0 items-center justify-center relative ml-4 pointer-events-none">
+                 <div className="absolute inset-0 bg-linear-to-tr from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-[20px] opacity-40 animate-pulse"></div>
+                 <div className="absolute inset-0 rounded-full border border-dashed border-cyan-400/40 animate-[spin_20s_linear_infinite]"></div>
+                 <div className="absolute inset-2 rounded-full border-2 border-transparent border-t-cyan-400 border-b-pink-400 border-r-purple-500 border-l-transparent animate-[spin_12s_linear_infinite_reverse]"></div>
+                 <div className="absolute inset-5 rounded-full border-2 border-dotted border-white/30 animate-[spin_8s_linear_infinite]"></div>
+                 <div className="absolute inset-7 bg-[#0a0a0a] border border-white/20 rounded-full flex items-center justify-center z-20 shadow-[inset_0_0_10px_rgba(168,85,247,0.5)]">
+                   <BrainCircuit className="text-white w-4 h-4 animate-[pulse_2s_ease-in-out_infinite]" />
                  </div>
-               </div>
+              </div>
+
             </div>
           </div>
         </section>
 
+        
         {/* --- TECH STACK (Animated Marquee) --- */}
         <section className="py-16 relative z-10 w-full overflow-hidden">
           <h3 className="text-sm font-bold tracking-widest text-gray-400 uppercase mb-8">Tech Stack & Arsenal</h3>
