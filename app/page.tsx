@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Brain, Bug, Building2, Terminal } from 'lucide-react';
+import { Github, Linkedin, Mail, Brain, Bug, Building2, Terminal, ArrowRight, Bot } from 'lucide-react';
 import { Code, BrainCircuit, Scan, Network, Share2, Cpu, GitBranch, TerminalSquare, Database, MapPin, Target, Monitor } from 'lucide-react';
 import { FileText, Sparkles, GraduationCap, HeartHandshake, BookOpen } from 'lucide-react'; 
 import dynamic from 'next/dynamic';
@@ -45,7 +45,7 @@ export default function Portfolio() {
           dot: 'bg-emerald-400', companyText: 'text-emerald-300'
         },
         nodes: [
-          { role: 'BSc, Artificial Intelligence', company: 'Shanghai University of Engineering Science', duration: 'Expected 06/2027' },
+          { role: 'BSc, Artificial Intelligence', company: 'Shanghai University of Engineering Science', duration: '09/2023 - Present' },
           { role: 'Higher Secondary Certificate', company: 'Notre Dame College, Dhaka', duration: '06/2020' },
           { role: 'National Round Contestant', company: 'Bangladesh Math & Physics Olympiads', duration: '2018' },
           { role: 'Bronze Honor', company: 'International Youth Math Challenge', duration: 'Awarded' },
@@ -62,8 +62,8 @@ export default function Portfolio() {
           dot: 'bg-blue-400', companyText: 'text-blue-300'
         },
         nodes: [
-          { role: 'Math & Physics Instructor', company: 'Online Seminars & Admissions', duration: '01/2022 - 05/2022' },
-          { role: 'Private Home Tutor', company: 'Mathematics, Science & Language Arts', duration: '01/2021 - 05/2023' },
+          { role: 'Math & Physics Instructor', company: 'Science Point Academic Care, Chattogram', duration: '01/2022 - 05/2022' },
+          { role: 'Private Home Tutor', company: 'Mathematics, Physics & Science', duration: '01/2021 - 05/2023' },
           { role: 'Executive Member', company: 'Notre Dame Math Club', duration: '2018 - 2020' },
         ]
       },
@@ -366,18 +366,83 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Project 4: Offline RAG */}
-        <div className="mt-6 bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/50 transition-all group">
-          <Terminal className="text-cyan-400 mb-6 group-hover:scale-110 transition-transform" size={32} />
-          <h2 className="text-2xl font-bold mb-4">Offline RAG</h2>
-          <p className="text-gray-400 text-sm mb-6">
-            Privacy-first document retrieval assistant utilizing ChromaDB and lightweight embedding models for offline technical paper analysis.
-          </p>
-          <div className="flex gap-2 flex-wrap">
-            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">LangChain</span>
-            <span className="text-[10px] uppercase bg-white/10 px-2 py-1 rounded">ChromaDB</span>
+        {/* Project 4: Offline RAG (Premium Redesign) */}
+        <a href="/offline-rag" className="block mt-6 border border-white/10 rounded-3xl p-1 hover:border-indigo-500/40 transition-all group relative overflow-hidden bg-linear-to-br from-white/5 to-transparent">
+          {/* Background Glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none group-hover:bg-indigo-500/20 transition-colors duration-700 z-0"></div>
+
+          <div className="bg-[#0a0a0a] rounded-[1.35rem] p-8 md:p-10 flex flex-col md:flex-row gap-10 items-center relative z-10 w-full h-full border border-black group-hover:border-indigo-900/50 transition-colors">
+            
+            {/* Left Side: Content */}
+            <div className="flex-1 w-full">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform duration-500">
+                  <Database size={24} />
+                </div>
+                <h2 className="text-3xl font-bold text-white group-hover:text-indigo-400 transition-colors tracking-tight">Offline RAG</h2>
+              </div>
+              
+              <p className="text-gray-400 text-base mb-6 leading-relaxed max-w-xl">
+                A 100% local, privacy-first Retrieval-Augmented Generation system. Built to allow secure chatting with technical PDFs without internet access or data leaks.
+              </p>
+
+              <div className="flex gap-2 flex-wrap mb-8">
+                <span className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 uppercase tracking-wider">LangChain LCEL</span>
+                <span className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 uppercase tracking-wider">ChromaDB</span>
+                <span className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider">Ollama (Phi-3)</span>
+              </div>
+
+              <div className="inline-flex items-center gap-2 text-indigo-400 font-bold group-hover:gap-3 transition-all text-sm uppercase tracking-widest">
+                Explore Architecture <ArrowRight size={16} />
+              </div>
+            </div>
+
+            {/* Right Side: Visual Terminal Representation */}
+            <div className="w-full md:w-105 shrink-0 bg-[#0d1117] border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+              {/* Faux Terminal Header */}
+              <div className="flex gap-2 mb-8 pb-4 border-b border-white/5">
+                 <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                 <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                 <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+              </div>
+              
+              {/* Data Flow Diagram */}
+              <div className="flex items-center justify-between text-gray-500 text-xs font-mono mb-8 px-2">
+                <div className="flex flex-col items-center gap-2">
+                  <FileText className="text-gray-400 group-hover:text-white transition-colors" size={24}/>
+                  <span>PDF</span>
+                </div>
+                
+                <div className="flex-1 border-t-2 border-dashed border-gray-700 mx-3 relative">
+                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0d1117] px-2 text-[9px] text-cyan-500 uppercase font-bold tracking-widest">Embed</div>
+                </div>
+                
+                <div className="flex flex-col items-center gap-2">
+                  <Database className="text-indigo-500 group-hover:text-indigo-400 transition-colors" size={24}/>
+                  <span className="text-indigo-400">VectorDB</span>
+                </div>
+                
+                <div className="flex-1 border-t-2 border-dashed border-gray-700 mx-3 relative">
+                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0d1117] px-2 text-[9px] text-purple-500 uppercase font-bold tracking-widest">Retrieve</div>
+                </div>
+                
+                <div className="flex flex-col items-center gap-2">
+                  <Bot className="text-purple-500 group-hover:text-purple-400 transition-colors" size={24}/>
+                  <span className="text-purple-400">Phi-3</span>
+                </div>
+              </div>
+              
+              {/* Faux Code line */}
+              <div className="pt-4 border-t border-white/5 font-mono text-xs text-gray-400 flex items-center gap-2">
+                <span className="text-green-400">~/osama</span>
+                <span className="text-blue-400">➜</span> 
+                <span className="text-gray-300">chain.invoke(query)</span>
+                <span className="w-2 h-4 bg-gray-400 animate-pulse ml-1"></span>
+              </div>
+            </div>
+
           </div>
-        </div>
+        </a>
 
         {/* --- THE RIG SECTION --- */}
         <section className="py-16 relative z-10 mt-12">
