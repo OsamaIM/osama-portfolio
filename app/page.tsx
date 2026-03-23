@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Brain, Bug, Building2, Terminal, ArrowRight, Bot } from 'lucide-react';
-import { Code, BrainCircuit, Scan, Network, Share2, Cpu, GitBranch, TerminalSquare, Database, MapPin, Target, Monitor } from 'lucide-react';
+import { Github, Linkedin, Mail, Brain, Building2, Terminal, ArrowRight, Bot } from 'lucide-react';
+import { Code, BrainCircuit, Scan, Network, Share2, Cpu, GitBranch, TerminalSquare, Database, MapPin, Monitor } from 'lucide-react';
 import { FileText, Sparkles, GraduationCap, HeartHandshake, BookOpen } from 'lucide-react'; 
 import dynamic from 'next/dynamic';
+import Guestbook from './components/Guestbook';
 
 const MRIAnalyzer = dynamic(() => import('./components/MRIAnalyzer'), { ssr: false });
 const SwarmSimulation = dynamic(() => import('./components/SwarmSimulation'), { ssr: false });
@@ -13,20 +14,18 @@ const SwarmSimulation = dynamic(() => import('./components/SwarmSimulation'), { 
 export default function Portfolio() {
   const [showMRI, setShowMRI] = useState(false);
   const [showHiveMind, setShowHiveMind] = useState(false);
-  const [activeNode, setActiveNode] = useState<string | null>(null);
   const [showOSMenu, setShowOSMenu] = useState(false);
 
-  // Core Data & Exact Tailwind Classes for the About Constellation
+  // Core Data Restored & Retained for the Flowchart Layout
   const aboutData = {
     constellation: [
       {
         id: 'ventures',
         label: 'Business Ventures',
-        icon: <Building2 size={32} />,
+        icon: <Building2 size={24} />,
         theme: {
-          border: 'border-cyan-500/20', hoverBorder: 'hover:border-cyan-500', shadow: 'shadow-cyan-900/50',
-          bgGlow: 'bg-cyan-950/20', bgGlowHover: 'group-hover:bg-cyan-950/40',
-          iconBox: 'bg-cyan-950/20 border-cyan-500/30 text-cyan-400', textHover: 'group-hover:text-cyan-400',
+          border: 'border-cyan-500/30', hoverBorder: 'hover:border-cyan-400', 
+          bgGlow: 'bg-cyan-950/30', iconBox: 'text-cyan-400',
           dot: 'bg-cyan-400', companyText: 'text-cyan-300'
         },
         nodes: [
@@ -38,11 +37,10 @@ export default function Portfolio() {
       {
         id: 'academics',
         label: 'Academic Foundation',
-        icon: <GraduationCap size={32} />,
+        icon: <GraduationCap size={24} />,
         theme: {
-          border: 'border-emerald-500/20', hoverBorder: 'hover:border-emerald-500', shadow: 'shadow-emerald-900/50',
-          bgGlow: 'bg-emerald-950/20', bgGlowHover: 'group-hover:bg-emerald-950/40',
-          iconBox: 'bg-emerald-950/20 border-emerald-500/30 text-emerald-400', textHover: 'group-hover:text-emerald-400',
+          border: 'border-emerald-500/30', hoverBorder: 'hover:border-emerald-400',
+          bgGlow: 'bg-emerald-950/30', iconBox: 'text-emerald-400',
           dot: 'bg-emerald-400', companyText: 'text-emerald-300'
         },
         nodes: [
@@ -55,11 +53,10 @@ export default function Portfolio() {
       {
         id: 'mentorship',
         label: 'Education & Mentorship',
-        icon: <BookOpen size={32} />,
+        icon: <BookOpen size={24} />,
         theme: {
-          border: 'border-blue-500/20', hoverBorder: 'hover:border-blue-500', shadow: 'shadow-blue-900/50',
-          bgGlow: 'bg-blue-950/20', bgGlowHover: 'group-hover:bg-blue-950/40',
-          iconBox: 'bg-blue-950/20 border-blue-500/30 text-blue-400', textHover: 'group-hover:text-blue-400',
+          border: 'border-blue-500/30', hoverBorder: 'hover:border-blue-400',
+          bgGlow: 'bg-blue-950/30', iconBox: 'text-blue-400',
           dot: 'bg-blue-400', companyText: 'text-blue-300'
         },
         nodes: [
@@ -71,11 +68,10 @@ export default function Portfolio() {
       {
         id: 'social',
         label: 'Social Impact',
-        icon: <HeartHandshake size={32} />,
+        icon: <HeartHandshake size={24} />,
         theme: {
-          border: 'border-purple-500/20', hoverBorder: 'hover:border-purple-500', shadow: 'shadow-purple-900/50',
-          bgGlow: 'bg-purple-950/20', bgGlowHover: 'group-hover:bg-purple-950/40',
-          iconBox: 'bg-purple-950/20 border-purple-500/30 text-purple-400', textHover: 'group-hover:text-purple-400',
+          border: 'border-purple-500/30', hoverBorder: 'hover:border-purple-400',
+          bgGlow: 'bg-purple-950/30', iconBox: 'text-purple-400',
           dot: 'bg-purple-400', companyText: 'text-purple-300'
         },
         nodes: [
@@ -138,68 +134,64 @@ export default function Portfolio() {
           </div>
         </nav>
 
-        {/* Hero Section */}
-        <div id="home" className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
-          
-          {/* Left Column: Text & Info */}
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              Hey, I'm <span className="text-cyan-400">Osama.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-400 mb-8 leading-relaxed max-w-md">
-              An AI Engineering student crafting intelligent, vision-driven, and swarm-based solutions at Shanghai University of Engineering Science and an Entrepreneur
-            </p>
+        {/* --- HERO SECTION --- */}
+        <section className="relative pt-32 pb-20 w-full max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-16 z-20">
+           <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-125 h-125 bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-            <div className="mb-8 border-l-2 border-white/10 pl-6">
-              <p className="text-sm font-semibold text-gray-300 mb-4 uppercase tracking-widest">I specialize in:</p>
-              <ul className="space-y-3 text-gray-400">
-                <li className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></span> 
+           <div className="flex-1 w-full relative z-10">
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+                <span className="text-white">Hi! It's me </span>
+                <br className="hidden md:block"/>
+                <span className="text-cyan-400">Osama.</span>
+              </h1>
+
+              <p className="text-gray-400 text-lg max-w-xl font-light mb-8 leading-relaxed">
+                An AI Engineering student and Entrepreneur crafting intelligent, vision-driven, and swarm-based solutions at Shanghai University of Engineering Science.
+              </p>
+
+              <div className="flex flex-wrap gap-2.5 mb-10">
+                <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-blue-600 text-white tracking-wide shadow-sm">
                   Deep Learning & CNNs
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></span> 
+                </span>
+                <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-emerald-500 text-white tracking-wide shadow-sm">
                   Computer Vision Systems
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full shadow-[0_0_8px_#22d3ee]"></span> 
+                </span>
+                <span className="text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-600 text-white tracking-wide shadow-sm">
                   Swarm Intelligence
-                </li>
-              </ul>
-            </div>
+                </span>
+              </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4">
-              <button className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full flex items-center gap-2 transition-all text-sm font-medium">
-                <Brain size={16} className="text-cyan-400" /> AI Projects
-              </button>
-              <button className="px-6 py-3 bg-transparent hover:bg-white/5 border border-white/10 rounded-full flex items-center gap-2 transition-all text-sm font-medium">
-                <FileText size={16} /> Resume
-              </button>
-              
-              <div className="flex items-center gap-2 px-4 py-3 rounded-full border border-white/5 bg-white/5 text-xs text-gray-400 ml-auto md:ml-0">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></span>
-                Current projects
+              <div className="flex flex-wrap items-center gap-4">
+                 <button className="px-8 py-3.5 bg-white/5 border border-white/10 text-white font-bold text-sm rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all shadow-lg flex items-center gap-2 group">
+                    <BrainCircuit size={16} className="text-cyan-400 group-hover:animate-pulse" /> AI Projects
+                 </button>
+                 <button className="px-8 py-3.5 bg-white/5 border border-white/10 text-white font-bold text-sm rounded-full hover:bg-white/10 transition-colors flex items-center gap-2">
+                    <FileText size={16} className="text-gray-400" /> Resume
+                 </button>
+                 <div className="flex items-center gap-2 px-6 py-3.5 bg-white/5 border border-white/10 rounded-full text-gray-400 font-medium text-xs tracking-wider cursor-default sm:flex">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div> Current projects
+                 </div>
               </div>
-            </div>
-          </div>
-          
-          {/* Right Column: Profile Image */}
-          <div className="flex justify-center md:justify-end">
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-2 group cursor-pointer">
-              <div className="absolute inset-0 rounded-full border border-dashed border-cyan-400/30 group-hover:border-cyan-400/60 animate-[spin_20s_linear_infinite] transition-colors"></div>
-              <div className="absolute inset-2 rounded-full border border-white/10 bg-white/5"></div>
-              
-              <div className="relative w-full h-full rounded-full bg-[#111] overflow-hidden flex items-center justify-center">
-                <img 
-                  src="/avatar.jpg" 
-                  alt="Osama" 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+           </div>
+
+           <div className="w-full lg:w-5/12 relative flex justify-center lg:justify-end mt-12 lg:mt-0">
+               <div className="relative w-72 h-96 sm:w-85 sm:h-105 rounded-[2.5rem] p-0.5 bg-linear-to-br from-cyan-400/40 via-cyan-900/10 to-transparent group hover:shadow-[0_0_40px_rgba(34,211,238,0.2)] transition-all duration-700">
+                  <div className="w-full h-full rounded-[2.4rem] overflow-hidden relative bg-[#05050a] border border-black group-hover:border-cyan-500/50 transition-colors">
+                     <img src="/avatar.jpg" alt="Osama" className="w-full h-full object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
+                     <div className="absolute inset-0 bg-linear-to-t from-[#05050a] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                  </div>
+                  <div className="absolute -left-4 sm:-left-10 bottom-12 bg-[#0a0c10]/80 backdrop-blur-xl border border-white/10 px-5 py-3 rounded-2xl shadow-2xl z-20 flex items-center gap-4 group-hover:-translate-y-2 transition-transform duration-500">
+                     <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 shrink-0 group-hover:bg-cyan-500/20 transition-colors">
+                        <MapPin className="text-cyan-400" size={18} />
+                     </div>
+                     <div>
+                        <p className="text-sm text-white font-bold leading-tight">Shanghai, CN</p>
+                        <p className="text-[10px] text-gray-500 font-mono mt-0.5">FROM: CHITTAGONG, BD</p>
+                     </div>
+                  </div>
+               </div>
+           </div>
+        </section>
 
         {/* --- PROJECTS SECTION --- */}
         <div id="projects" className="mt-12">
@@ -210,7 +202,7 @@ export default function Portfolio() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Project 1: Brain MRI (Interactive Expanding Bento) */}
+            {/* Project 1: Brain MRI */}
             <div 
               className={`bg-[#0a0a0a] border border-white/10 rounded-2xl transition-all duration-500 overflow-hidden relative ${
                 showMRI ? 'md:col-span-2 lg:col-span-3 ring-1 ring-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.15)] p-6' : 'hover:border-white/20 cursor-pointer group p-3'
@@ -219,16 +211,20 @@ export default function Portfolio() {
             >
               {!showMRI ? (
                 <>
-                  <div className="w-full h-48 bg-linear-to-br from-blue-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
-                     <Brain size={48} className="text-blue-500/50 group-hover:scale-110 transition-transform duration-500" />
-                  </div>
+                  <div className="w-full h-48 rounded-xl mb-4 overflow-hidden relative border border-white/5 bg-black">
+   <img 
+     src="/project logo.jpg" 
+     alt="BrainOnco-100K Logo" 
+     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+   />
+</div>
                   <div className="flex gap-2 mb-3 px-1 flex-wrap">
                     <span className="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">CNN</span>
                     <span className="bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyTorch</span>
                     <span className="bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Medical AI</span>
                   </div>
                   <div className="px-1 pb-2">
-                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">Brain Tumor MRI</h3>
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">BrainOnco-100K</h3>
                     <p className="text-sm text-gray-400 line-clamp-2">Deep learning pipeline leveraging CNNs for automated brain tumor detection using data augmentation.</p>
                   </div>
                 </>
@@ -244,7 +240,7 @@ export default function Portfolio() {
                   <div className="flex-1 py-2 flex flex-col justify-center">
                     <div className="flex items-center gap-3 mb-4">
                        <Brain size={32} className="text-cyan-400" />
-                       <h3 className="text-3xl font-bold text-white tracking-tight">Brain Tumor MRI</h3>
+                       <h3 className="text-3xl font-bold text-white tracking-tight">BrainOnco-100K</h3>
                     </div>
                     <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                       Test my lightweight YOLO-inspired model directly in your browser. This architecture achieved <strong className="text-cyan-400">95.04% accuracy</strong> utilizing only ~107k parameters, outperforming heavy ResNet models. It runs entirely via ONNX WebAssembly, requiring zero backend compute.
@@ -269,7 +265,7 @@ export default function Portfolio() {
               )}
             </div>
 
-            {/* Project 2: HiveMind (Interactive Expanding Bento) */}
+            {/* Project 2: HiveMind */}
             <div 
               className={`bg-[#0a0a0a] border border-white/10 rounded-2xl transition-all duration-500 overflow-hidden relative ${
                 showHiveMind ? 'md:col-span-2 lg:col-span-3 ring-1 ring-pink-500/50 shadow-[0_0_30px_rgba(236,72,153,0.15)] p-6' : 'hover:border-white/20 cursor-pointer group p-3'
@@ -278,9 +274,13 @@ export default function Portfolio() {
             >
               {!showHiveMind ? (
                 <>
-                  <div className="w-full h-48 bg-linear-to-br from-pink-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
-                     <Sparkles size={48} className="text-pink-500/50 group-hover:scale-110 transition-transform duration-500" />
-                  </div>
+                  <div className="w-full h-48 rounded-xl mb-4 overflow-hidden relative border border-white/5 bg-black">
+   <img 
+     src="/HiveMind logo.jpg" 
+     alt="HiveMind Logo" 
+     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+   />
+</div>
                   <div className="flex gap-2 mb-3 px-1 flex-wrap">
                     <span className="bg-pink-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Local LLMs</span>
                     <span className="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyGame</span>
@@ -328,14 +328,18 @@ export default function Portfolio() {
               )}
             </div>
 
-            {/* Project 3: VeiledGuard (Edge Vision) */}
+            {/* Project 3: VeiledGuard */}
             <a 
               href="/veiledguard" 
               className="block bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 hover:border-white/20 transition-all group cursor-pointer"
             >
-              <div className="w-full h-48 bg-linear-to-br from-green-900/40 to-black rounded-xl mb-4 overflow-hidden relative flex items-center justify-center">
-                 <Terminal size={48} className="text-green-500/50 group-hover:scale-110 transition-transform duration-500" />
-              </div>
+              <div className="w-full h-48 rounded-xl mb-4 overflow-hidden relative border border-white/5 bg-black">
+   <img 
+     src="/veiledguard logo.jpg" 
+     alt="VeiledGuard Logo" 
+     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+   />
+</div>
               <div className="flex gap-2 mb-3 px-1 flex-wrap">
                 <span className="bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Computer Vision</span>
                 <span className="bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Real-Time</span>
@@ -367,14 +371,11 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Project 4: Offline RAG (Premium Redesign) */}
+        {/* Project 4: Offline RAG */}
         <a href="/offline-rag" className="block mt-6 border border-white/10 rounded-3xl p-1 hover:border-indigo-500/40 transition-all group relative overflow-hidden bg-linear-to-br from-white/5 to-transparent">
-          {/* Background Glow */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none group-hover:bg-indigo-500/20 transition-colors duration-700 z-0"></div>
-
           <div className="bg-[#0a0a0a] rounded-[1.35rem] p-8 md:p-10 flex flex-col md:flex-row gap-10 items-center relative z-10 w-full h-full border border-black group-hover:border-indigo-900/50 transition-colors">
             
-            {/* Left Side: Content */}
             <div className="flex-1 w-full">
               <div className="flex items-center gap-4 mb-4">
                 <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-400 group-hover:scale-110 transition-transform duration-500">
@@ -382,58 +383,45 @@ export default function Portfolio() {
                 </div>
                 <h2 className="text-3xl font-bold text-white group-hover:text-indigo-400 transition-colors tracking-tight">Offline RAG</h2>
               </div>
-              
               <p className="text-gray-400 text-base mb-6 leading-relaxed max-w-xl">
                 A 100% local, privacy-first Retrieval-Augmented Generation system. Built to allow secure chatting with technical PDFs without internet access or data leaks.
               </p>
-
               <div className="flex gap-2 flex-wrap mb-8">
                 <span className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 uppercase tracking-wider">LangChain LCEL</span>
                 <span className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20 uppercase tracking-wider">ChromaDB</span>
                 <span className="text-[11px] font-bold px-3 py-1.5 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 uppercase tracking-wider">Ollama (Phi-3)</span>
               </div>
-
               <div className="inline-flex items-center gap-2 text-indigo-400 font-bold group-hover:gap-3 transition-all text-sm uppercase tracking-widest">
                 Explore Architecture <ArrowRight size={16} />
               </div>
             </div>
 
-            {/* Right Side: Visual Terminal Representation */}
             <div className="w-full md:w-105 shrink-0 bg-[#0d1117] border border-white/10 rounded-2xl p-6 shadow-2xl relative overflow-hidden">
-              {/* Faux Terminal Header */}
               <div className="flex gap-2 mb-8 pb-4 border-b border-white/5">
                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
               </div>
-              
-              {/* Data Flow Diagram */}
               <div className="flex items-center justify-between text-gray-500 text-xs font-mono mb-8 px-2">
                 <div className="flex flex-col items-center gap-2">
                   <FileText className="text-gray-400 group-hover:text-white transition-colors" size={24}/>
                   <span>PDF</span>
                 </div>
-                
                 <div className="flex-1 border-t-2 border-dashed border-gray-700 mx-3 relative">
                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0d1117] px-2 text-[9px] text-cyan-500 uppercase font-bold tracking-widest">Embed</div>
                 </div>
-                
                 <div className="flex flex-col items-center gap-2">
                   <Database className="text-indigo-500 group-hover:text-indigo-400 transition-colors" size={24}/>
                   <span className="text-indigo-400">VectorDB</span>
                 </div>
-                
                 <div className="flex-1 border-t-2 border-dashed border-gray-700 mx-3 relative">
                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0d1117] px-2 text-[9px] text-purple-500 uppercase font-bold tracking-widest">Retrieve</div>
                 </div>
-                
                 <div className="flex flex-col items-center gap-2">
                   <Bot className="text-purple-500 group-hover:text-purple-400 transition-colors" size={24}/>
                   <span className="text-purple-400">Phi-3</span>
                 </div>
               </div>
-              
-              {/* Faux Code line */}
               <div className="pt-4 border-t border-white/5 font-mono text-xs text-gray-400 flex items-center gap-2">
                 <span className="text-green-400">~/osama</span>
                 <span className="text-blue-400">➜</span> 
@@ -445,24 +433,17 @@ export default function Portfolio() {
           </div>
         </a>
 
-       {/* --- THE RIG SECTION (Compact Cyberpunk Ribbon - Overflow Fixed) --- */}
-        <section className="py-8 relative z-20 max-w-6xl mx-auto px-6">
-          {/* Outer Gradient Border Wrapper - REMOVED overflow-hidden */}
+       {/* --- THE RIG SECTION --- */}
+        <section className="py-8 relative z-20 max-w-6xl mx-auto px-6 mt-12">
           <div className="relative rounded-3xl p-px bg-linear-to-r from-cyan-500/50 via-purple-600/50 to-pink-500/50 group hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-shadow duration-700">
-            
-            {/* Main Container - REMOVED overflow-hidden */}
             <div className="bg-[#05050a] rounded-[1.4rem] p-5 md:p-6 relative flex flex-col lg:flex-row items-center justify-between gap-6">
               
-              {/* Background Effects Wrapper - ISOLATED overflow-hidden so it doesn't clip the menu */}
               <div className="absolute inset-0 rounded-[1.4rem] overflow-hidden pointer-events-none">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ff1_1px,transparent_1px),linear-gradient(to_bottom,#0ff1_1px,transparent_1px)] bg-size-[2rem_2rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] opacity-20"></div>
                 <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-cyan-600/20 blur-[80px] rounded-full mix-blend-screen"></div>
               </div>
 
-              {/* Left Side: Header & Micro-Cards */}
               <div className="relative z-10 flex-1 w-full">
-                
-                {/* Header (Compact) */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-white/5 rounded-lg border border-white/10 shadow-[0_0_10px_rgba(255,255,255,0.05)]">
                     <Cpu className="text-white" size={18} />
@@ -473,10 +454,8 @@ export default function Portfolio() {
                   <span className="text-[9px] font-mono text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full ml-2 hidden sm:block bg-cyan-500/10">LOCAL_COMPUTE_NODE</span>
                 </div>
 
-                {/* Hardware Nodes (Micro-Grid) */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full relative">
                   
-                  {/* OS Node (Interactive Clickable Menu) */}
                   <div 
                     onClick={() => setShowOSMenu(!showOSMenu)}
                     onMouseLeave={() => setShowOSMenu(false)}
@@ -488,9 +467,8 @@ export default function Portfolio() {
                       <p className="text-xs font-bold text-gray-200 leading-none group-hover/card:text-cyan-300 transition-colors">Triple-Boot ▾</p>
                     </div>
 
-                    {/* The Clickable Boot Menu Popup */}
                     {showOSMenu && (
-                      <div className="absolute top-[110%] left-0 w-48 bg-[#0a0a0f] border border-cyan-500/40 rounded-xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-100 backdrop-blur-xl">
+                      <div className="absolute top-[110%] left-0 w-48 bg-[#0a0a0f] border border-cyan-500/40 rounded-xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 backdrop-blur-xl">
                         <p className="text-[9px] font-mono text-cyan-400 mb-3 border-b border-cyan-500/30 pb-2 uppercase tracking-widest">Select_Boot_Drive</p>
                         <ul className="space-y-3 text-xs font-bold text-gray-300">
                           <li className="flex items-center gap-3 hover:text-white transition-colors cursor-default">
@@ -533,7 +511,6 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              {/* Right Side: Miniaturized Quantum Core */}
               <div className="hidden lg:flex w-24 h-24 shrink-0 items-center justify-center relative ml-4 pointer-events-none">
                  <div className="absolute inset-0 bg-linear-to-tr from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-[20px] opacity-40 animate-pulse"></div>
                  <div className="absolute inset-0 rounded-full border border-dashed border-cyan-400/40 animate-[spin_20s_linear_infinite]"></div>
@@ -595,14 +572,13 @@ export default function Portfolio() {
            </p>
         </section>
 
-        {/* --- ABOUT ME SECTION (Narrative + Constellation) --- */}
+        {/* --- ABOUT ME SECTION --- */}
         <section id="about" className="py-24 relative z-10 mt-12">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">About Me</h2>
             <p className="text-gray-400 text-lg">My background, mission, and journey.</p>
           </div>
 
-          {/* Short Bio Description */}
           <div className="mb-20 bg-[#0f1115]/80 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none transition-colors duration-700"></div>
             <p className="text-xl text-gray-300 leading-relaxed font-light relative z-10">
@@ -610,54 +586,117 @@ export default function Portfolio() {
             </p>
           </div>
 
-          {/* Interactive Constellation */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <Sparkles className="text-cyan-400" size={24} />
-              Experience & Impact Map
-            </h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {aboutData.constellation.map((hub) => (
-                <div
-                  key={hub.id}
-                  className={`block bg-[#0a0a0a]/80 backdrop-blur-xl ${hub.theme.border} border rounded-4xl p-8 md:p-10 ${hub.theme.hoverBorder} transition-all duration-500 group relative overflow-hidden ${activeNode === hub.id ? `shadow-2xl ${hub.theme.shadow} scale-[1.02]` : 'scale-100 shadow-none'}`}
-                  onMouseEnter={() => setActiveNode(hub.id)}
-                  onMouseLeave={() => setActiveNode(null)}
-                >
-                  <div className={`absolute top-0 right-0 w-64 h-64 ${hub.theme.bgGlow} blur-3xl rounded-full pointer-events-none ${hub.theme.bgGlowHover} transition-colors duration-700`}></div>
-                  
-                  <div className="relative z-10 flex gap-6 items-center mb-10 pb-6 border-b border-white/5">
-                    <div className={`w-16 h-16 shrink-0 rounded-2xl flex items-center justify-center border shadow-[0_0_30px_-5px_currentColor] ${hub.theme.iconBox}`}>
-                      {hub.icon}
-                    </div>
-                    <h3 className={`text-2xl font-bold text-white ${hub.theme.textHover} transition-colors`}>
-                      {hub.label}
-                    </h3>
-                  </div>
-
-                  <div className={`space-y-6 transition-all duration-500 ${activeNode === hub.id ? 'opacity-100' : 'opacity-70'}`}>
-                    {hub.nodes.map((node, index) => (
-                      <div key={index} className={`flex items-start gap-4 ${activeNode === hub.id ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-80'} transition-all duration-500`} style={{ transitionDelay: `${index * 50}ms` }}>
-                        <div className="w-2 h-2 mt-2.5 shrink-0 rounded-full relative">
-                          <div className={`absolute inset-0 rounded-full ${hub.theme.dot} ${activeNode === hub.id ? 'animate-pulse' : ''}`}></div>
-                          <div className={`absolute inset-0 rounded-full ${hub.theme.dot}/50 blur-sm scale-150`}></div>
-                        </div>
-                        <div className="flex-1 pb-4 border-b border-white/5 last:border-0 last:pb-0">
-                          <p className="text-white font-bold text-lg leading-tight mb-1">{node.role}</p>
-                          <p className={`${hub.theme.companyText} font-medium text-sm leading-snug`}>{node.company}</p>
-                          <p className="text-gray-500 text-xs mt-1.5 font-mono">{node.duration}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+          {/* --- NEW FLOWCHART EXPERIENCE MAP (Restoring your 4 exact categories) --- */}
+          <section className="py-12 relative z-10 w-full">
+            <div className="flex items-center gap-3 mb-24 justify-center">
+              <Network className="text-cyan-400" size={24} />
+              <h3 className="text-3xl font-bold text-white tracking-tight uppercase text-center">
+                Education & Experiences <span className="text-gray-600 font-mono text-base ml-2 tracking-widest">// Flowchart</span>
+              </h3>
             </div>
-          </div>
+
+            <div className="relative w-full max-w-5xl mx-auto">
+              
+              {/* Central Spine Pipeline */}
+              <div className="absolute left-7 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-cyan-500/20 via-purple-500/20 to-pink-500/20 -translate-x-1/2">
+                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-16 bg-linear-to-b from-transparent via-cyan-400 to-transparent animate-pulse-slow"></div>
+              </div>
+
+              {/* Start Node */}
+              <div className="relative z-10 flex justify-start md:justify-center mb-16 pl-14 md:pl-0">
+                <div className="bg-[#05050a] border border-cyan-500/30 px-6 py-2 rounded-full font-mono text-xs text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                  Journey
+                </div>
+              </div>
+
+              {/* Flowchart Nodes Loop */}
+              {aboutData.constellation.map((category, index) => {
+                const isEven = index % 2 === 0;
+
+                return (
+                  <div key={category.id} className="relative w-full flex flex-col md:flex-row items-center mb-16 md:mb-24 last:mb-0">
+                    
+                    {/* Central Connector Dot */}
+                    <div className="absolute left-7 md:left-1/2 flex items-center justify-center -translate-x-1/2 z-20 top-8 md:top-1/2 md:-translate-y-1/2">
+                       <div className={`w-5 h-5 rounded-full bg-[#05050a] border-[3px] ${category.theme.border.replace('border-', 'border-').split('/')[0]} flex items-center justify-center shadow-[0_0_15px_currentColor] text-${category.theme.iconBox.split('-')[1]}-400`}>
+                          <div className={`w-1.5 h-1.5 rounded-full ${category.theme.dot}`}></div>
+                       </div>
+                    </div>
+                    
+                    {/* Mobile Horizontal Connector */}
+                    <div className="absolute left-7 md:hidden w-8 h-0.5 bg-white/10 top-8 z-0"></div>
+
+                    {/* Left Column (Even items render here on desktop) */}
+                    <div className={`w-full md:w-1/2 pl-14 md:pl-0 md:pr-12 ${isEven ? 'flex md:justify-end' : 'hidden md:flex'}`}>
+                       {isEven && (
+                          <div className={`w-full max-w-lg bg-[#05050a] border ${category.theme.border} rounded-3xl p-6 md:p-8 relative group hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 z-10`}>
+                             
+                             <div className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 border-b border-white/5 pb-5 md:flex-row-reverse`}>
+                                <div className={`p-3 rounded-xl ${category.theme.bgGlow} border ${category.theme.border} ${category.theme.iconBox} transition-colors`}>
+                                   {category.icon}
+                                </div>
+                                <h4 className="text-xl font-bold text-white tracking-tight">{category.label}</h4>
+                             </div>
+
+                             <div className="flex flex-col gap-3 w-full">
+                                {category.nodes.map((node, i) => (
+                                   <div key={i} className={`flex flex-col md:items-end md:text-right items-start text-left bg-white/2 border border-white/5 p-4 rounded-xl group-hover:bg-white/4 transition-colors`}>
+                                      <h5 className="text-sm font-bold text-gray-200">{node.role}</h5>
+                                      <p className="text-xs text-gray-400 mt-1">{node.company}</p>
+                                      <span className={`text-[10px] font-mono mt-2 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 ${category.theme.companyText}`}>{node.duration}</span>
+                                   </div>
+                                ))}
+                             </div>
+
+                          </div>
+                       )}
+                    </div>
+
+                    {/* Right Column (Odd items render here on desktop) */}
+                    <div className={`w-full md:w-1/2 pl-14 md:pl-12 mt-8 md:mt-0 ${!isEven ? 'flex md:justify-start' : 'hidden md:flex'}`}>
+                       {!isEven && (
+                          <div className={`w-full max-w-lg bg-[#05050a] border ${category.theme.border} rounded-3xl p-6 md:p-8 relative group hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 z-10`}>
+                             
+                             <div className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 border-b border-white/5 pb-5`}>
+                                <div className={`p-3 rounded-xl ${category.theme.bgGlow} border ${category.theme.border} ${category.theme.iconBox} transition-colors`}>
+                                   {category.icon}
+                                </div>
+                                <h4 className="text-xl font-bold text-white tracking-tight">{category.label}</h4>
+                             </div>
+
+                             <div className="flex flex-col gap-3 w-full">
+                                {category.nodes.map((node, i) => (
+                                   <div key={i} className={`flex flex-col items-start text-left bg-white/2 border border-white/5 p-4 rounded-xl group-hover:bg-white/4 transition-colors`}>
+                                      <h5 className="text-sm font-bold text-gray-200">{node.role}</h5>
+                                      <p className="text-xs text-gray-400 mt-1">{node.company}</p>
+                                      <span className={`text-[10px] font-mono mt-2 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 ${category.theme.companyText}`}>{node.duration}</span>
+                                   </div>
+                                ))}
+                             </div>
+
+                          </div>
+                       )}
+                    </div>
+
+                  </div>
+                );
+              })}
+
+              {/* End Node */}
+              <div className="relative z-10 flex justify-start md:justify-center mt-16 pl-14 md:pl-0">
+                <div className="bg-[#05050a] border border-white/20 px-6 py-2 rounded-full font-mono text-xs text-gray-400">
+                  AWAITING_INPUT // NEXT_PHASE
+                </div>
+              </div>
+
+            </div>
+          </section>
+
         </section>
 
       </div>
+      
+      <Guestbook />
 
       <footer className="mt-12 pb-12 flex flex-col items-center gap-6 relative z-10">
         <div className="flex gap-6 text-gray-500">
