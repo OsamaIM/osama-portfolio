@@ -15,6 +15,7 @@ export default function Portfolio() {
   const [showMRI, setShowMRI] = useState(false);
   const [showHiveMind, setShowHiveMind] = useState(false);
   const [showOSMenu, setShowOSMenu] = useState(false);
+  const [showContact, setShowContact] = useState(false); // New state for contact dropdown
 
   // Core Data Restored & Retained for the Flowchart Layout
   const aboutData = {
@@ -161,24 +162,58 @@ export default function Portfolio() {
                 </span>
               </div>
 
+              {/* UPDATED BUTTONS */}
               <div className="flex flex-wrap items-center gap-4">
-                 <button className="px-8 py-3.5 bg-white/5 border border-white/10 text-white font-bold text-sm rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all shadow-lg flex items-center gap-2 group">
-                    <BrainCircuit size={16} className="text-cyan-400 group-hover:animate-pulse" /> AI Projects
-                 </button>
-                 <button className="px-8 py-3.5 bg-white/5 border border-white/10 text-white font-bold text-sm rounded-full hover:bg-white/10 transition-colors flex items-center gap-2">
-                    <FileText size={16} className="text-gray-400" /> Resume
-                 </button>
-                 <div className="flex items-center gap-2 px-6 py-3.5 bg-white/5 border border-white/10 rounded-full text-gray-400 font-medium text-xs tracking-wider cursor-default sm:flex">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div> Current projects
+                 
+                 {/* Resume Button */}
+                 <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-3.5 bg-white/5 border border-white/10 text-white font-bold text-sm rounded-full hover:border-cyan-400 hover:text-cyan-400 transition-all shadow-lg flex items-center gap-2 group cursor-pointer">
+                    <FileText size={16} className="text-cyan-400 group-hover:animate-pulse" /> Resume
+                 </a>
+                 
+                 {/* Contact Me Dropdown */}
+                 <div 
+                    className="relative"
+                    onMouseLeave={() => setShowContact(false)}
+                 >
+                    <button 
+                       onClick={() => setShowContact(!showContact)}
+                       className="px-8 py-3.5 bg-white/5 border border-white/10 text-white font-bold text-sm rounded-full hover:bg-white/10 transition-colors flex items-center gap-2 cursor-pointer"
+                    >
+                       <Mail size={16} className="text-gray-400" /> Contact Me
+                    </button>
+
+                    {showContact && (
+                       <div className="absolute top-[110%] left-0 w-64 bg-[#0a0a0f] border border-cyan-500/40 rounded-xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 backdrop-blur-xl animate-in fade-in zoom-in duration-200">
+                          <p className="text-xs text-gray-300 leading-relaxed mb-3">
+                             Feel free to reach out at:<br/>
+                             <span className="font-mono text-cyan-400 tracking-wide mt-1 block">osamaibnmahfuz@gmail.com</span>
+                          </p>
+                          <a 
+                             href="mailto:osamaibnmahfuz@gmail.com" 
+                             className="w-full flex justify-center items-center gap-2 px-4 py-2.5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/20 transition-all rounded-lg text-xs font-bold"
+                          >
+                             <Mail size={14} /> Click here to send
+                          </a>
+                       </div>
+                    )}
                  </div>
+
+                 {/* Current Projects Link */}
+                 <a href="#current-projects" className="flex items-center gap-2 px-6 py-3.5 bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-white hover:border-white/20 transition-all font-medium text-xs tracking-wider cursor-pointer sm:flex">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    Current projects
+                 </a>
               </div>
            </div>
 
            <div className="w-full lg:w-5/12 relative flex justify-center lg:justify-end mt-12 lg:mt-0">
-               <div className="relative w-72 h-96 sm:w-85 sm:h-105 rounded-[2.5rem] p-0.5 bg-linear-to-br from-cyan-400/40 via-cyan-900/10 to-transparent group hover:shadow-[0_0_40px_rgba(34,211,238,0.2)] transition-all duration-700">
+               <div className="relative w-72 h-96 sm:w-85 sm:h-105 rounded-[2.5rem] p-0.5 bg-gradient-to-br from-cyan-400/40 via-cyan-900/10 to-transparent group hover:shadow-[0_0_40px_rgba(34,211,238,0.2)] transition-all duration-700">
                   <div className="w-full h-full rounded-[2.4rem] overflow-hidden relative bg-[#05050a] border border-black group-hover:border-cyan-500/50 transition-colors">
                      <img src="/avatar.jpg" alt="Osama" className="w-full h-full object-cover object-center scale-105 group-hover:scale-100 transition-transform duration-700 opacity-90 group-hover:opacity-100" />
-                     <div className="absolute inset-0 bg-linear-to-t from-[#05050a] via-transparent to-transparent opacity-80 pointer-events-none"></div>
+                     <div className="absolute inset-0 bg-gradient-to-t from-[#05050a] via-transparent to-transparent opacity-80 pointer-events-none"></div>
                   </div>
                   <div className="absolute -left-4 sm:-left-10 bottom-12 bg-[#0a0c10]/80 backdrop-blur-xl border border-white/10 px-5 py-3 rounded-2xl shadow-2xl z-20 flex items-center gap-4 group-hover:-translate-y-2 transition-transform duration-500">
                      <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 shrink-0 group-hover:bg-cyan-500/20 transition-colors">
@@ -212,12 +247,12 @@ export default function Portfolio() {
               {!showMRI ? (
                 <>
                   <div className="w-full h-48 rounded-xl mb-4 overflow-hidden relative border border-white/5 bg-black">
-   <img 
-     src="/project logo.jpg" 
-     alt="BrainOnco-100K Logo" 
-     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-   />
-</div>
+                     <img 
+                       src="/project logo.jpg" 
+                       alt="BrainOnco-100K Logo" 
+                       className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                     />
+                  </div>
                   <div className="flex gap-2 mb-3 px-1 flex-wrap">
                     <span className="bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">CNN</span>
                     <span className="bg-purple-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyTorch</span>
@@ -275,12 +310,12 @@ export default function Portfolio() {
               {!showHiveMind ? (
                 <>
                   <div className="w-full h-48 rounded-xl mb-4 overflow-hidden relative border border-white/5 bg-black">
-   <img 
-     src="/HiveMind logo.jpg" 
-     alt="HiveMind Logo" 
-     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-   />
-</div>
+                     <img 
+                       src="/HiveMind logo.jpg" 
+                       alt="HiveMind Logo" 
+                       className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                     />
+                  </div>
                   <div className="flex gap-2 mb-3 px-1 flex-wrap">
                     <span className="bg-pink-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Local LLMs</span>
                     <span className="bg-orange-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">PyGame</span>
@@ -334,12 +369,12 @@ export default function Portfolio() {
               className="block bg-[#0a0a0a] border border-white/10 rounded-2xl p-3 hover:border-white/20 transition-all group cursor-pointer"
             >
               <div className="w-full h-48 rounded-xl mb-4 overflow-hidden relative border border-white/5 bg-black">
-   <img 
-     src="/veiledguard logo.jpg" 
-     alt="VeiledGuard Logo" 
-     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-   />
-</div>
+                 <img 
+                   src="/veiledguard logo.jpg" 
+                   alt="VeiledGuard Logo" 
+                   className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                 />
+              </div>
               <div className="flex gap-2 mb-3 px-1 flex-wrap">
                 <span className="bg-green-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Computer Vision</span>
                 <span className="bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">Real-Time</span>
@@ -372,7 +407,7 @@ export default function Portfolio() {
         </div>
 
         {/* Project 4: Offline RAG */}
-        <a href="/offline-rag" className="block mt-6 border border-white/10 rounded-3xl p-1 hover:border-indigo-500/40 transition-all group relative overflow-hidden bg-linear-to-br from-white/5 to-transparent">
+        <a href="/offline-rag" className="block mt-6 border border-white/10 rounded-3xl p-1 hover:border-indigo-500/40 transition-all group relative overflow-hidden bg-gradient-to-br from-white/5 to-transparent">
           <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none group-hover:bg-indigo-500/20 transition-colors duration-700 z-0"></div>
           <div className="bg-[#0a0a0a] rounded-[1.35rem] p-8 md:p-10 flex flex-col md:flex-row gap-10 items-center relative z-10 w-full h-full border border-black group-hover:border-indigo-900/50 transition-colors">
             
@@ -433,13 +468,41 @@ export default function Portfolio() {
           </div>
         </a>
 
+        {/* --- CURRENT PROJECTS PLACEHOLDER --- */}
+        <section id="current-projects" className="py-16 relative z-20 max-w-6xl mx-auto px-6 mt-12 scroll-mt-24">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            <h3 className="text-2xl font-bold text-white tracking-tight uppercase">Current Focus</h3>
+          </div>
+          
+          <div className="bg-[#05050a] border border-white/10 border-dashed rounded-[1.4rem] p-10 md:p-16 flex flex-col items-center justify-center text-center relative overflow-hidden group hover:border-green-500/30 transition-colors">
+             <div className="absolute inset-0 bg-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+             
+             <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6 border border-white/10 group-hover:scale-110 transition-transform duration-500">
+               <Bot size={28} className="text-green-400" />
+             </div>
+             
+             <h4 className="text-xl font-bold text-gray-200 mb-3">System Under Development</h4>
+             <p className="text-gray-500 max-w-md text-sm leading-relaxed mb-6">
+               I am actively building a new AI-driven architecture. Module parameters and repository links will be initialized here upon deployment.
+             </p>
+             
+             <div className="flex items-center gap-2 text-xs font-mono text-green-500/70 uppercase tracking-widest bg-green-500/10 px-4 py-2 rounded-full border border-green-500/20">
+               Status: Compiling...
+             </div>
+          </div>
+        </section>
+
        {/* --- THE RIG SECTION --- */}
         <section className="py-8 relative z-20 max-w-6xl mx-auto px-6 mt-12">
-          <div className="relative rounded-3xl p-px bg-linear-to-r from-cyan-500/50 via-purple-600/50 to-pink-500/50 group hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-shadow duration-700">
+          <div className="relative rounded-3xl p-px bg-gradient-to-r from-cyan-500/50 via-purple-600/50 to-pink-500/50 group hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition-shadow duration-700">
             <div className="bg-[#05050a] rounded-[1.4rem] p-5 md:p-6 relative flex flex-col lg:flex-row items-center justify-between gap-6">
               
               <div className="absolute inset-0 rounded-[1.4rem] overflow-hidden pointer-events-none">
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ff1_1px,transparent_1px),linear-gradient(to_bottom,#0ff1_1px,transparent_1px)] bg-size-[2rem_2rem] mask-[radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] opacity-20"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#0ff1_1px,transparent_1px),linear-gradient(to_bottom,#0ff1_1px,transparent_1px)] bg-[size:2rem_2rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_20%,transparent_100%)] opacity-20"></div>
                 <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-cyan-600/20 blur-[80px] rounded-full mix-blend-screen"></div>
               </div>
 
@@ -448,7 +511,7 @@ export default function Portfolio() {
                   <div className="p-2 bg-white/5 rounded-lg border border-white/10 shadow-[0_0_10px_rgba(255,255,255,0.05)]">
                     <Cpu className="text-white" size={18} />
                   </div>
-                  <h3 className="text-2xl font-black text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-white to-pink-400 tracking-tight uppercase">
+                  <h3 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-pink-400 tracking-tight uppercase">
                     The Rig
                   </h3>
                   <span className="text-[9px] font-mono text-cyan-400 border border-cyan-500/30 px-2 py-0.5 rounded-full ml-2 hidden sm:block bg-cyan-500/10">LOCAL_COMPUTE_NODE</span>
@@ -512,7 +575,7 @@ export default function Portfolio() {
               </div>
 
               <div className="hidden lg:flex w-24 h-24 shrink-0 items-center justify-center relative ml-4 pointer-events-none">
-                 <div className="absolute inset-0 bg-linear-to-tr from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-[20px] opacity-40 animate-pulse"></div>
+                 <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-[20px] opacity-40 animate-pulse"></div>
                  <div className="absolute inset-0 rounded-full border border-dashed border-cyan-400/40 animate-[spin_20s_linear_infinite]"></div>
                  <div className="absolute inset-2 rounded-full border-2 border-transparent border-t-cyan-400 border-b-pink-400 border-r-purple-500 border-l-transparent animate-[spin_12s_linear_infinite_reverse]"></div>
                  <div className="absolute inset-5 rounded-full border-2 border-dotted border-white/30 animate-[spin_8s_linear_infinite]"></div>
@@ -586,7 +649,7 @@ export default function Portfolio() {
             </p>
           </div>
 
-          {/* --- NEW FLOWCHART EXPERIENCE MAP (Restoring your 4 exact categories) --- */}
+          {/* --- NEW FLOWCHART EXPERIENCE MAP --- */}
           <section className="py-12 relative z-10 w-full">
             <div className="flex items-center gap-3 mb-24 justify-center">
               <Network className="text-cyan-400" size={24} />
@@ -598,8 +661,8 @@ export default function Portfolio() {
             <div className="relative w-full max-w-5xl mx-auto">
               
               {/* Central Spine Pipeline */}
-              <div className="absolute left-7 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-cyan-500/20 via-purple-500/20 to-pink-500/20 -translate-x-1/2">
-                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-16 bg-linear-to-b from-transparent via-cyan-400 to-transparent animate-pulse-slow"></div>
+              <div className="absolute left-7 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500/20 via-purple-500/20 to-pink-500/20 -translate-x-1/2">
+                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-16 bg-gradient-to-b from-transparent via-cyan-400 to-transparent animate-pulse-slow"></div>
               </div>
 
               {/* Start Node */}
@@ -640,7 +703,7 @@ export default function Portfolio() {
 
                              <div className="flex flex-col gap-3 w-full">
                                 {category.nodes.map((node, i) => (
-                                   <div key={i} className={`flex flex-col md:items-end md:text-right items-start text-left bg-white/2 border border-white/5 p-4 rounded-xl group-hover:bg-white/4 transition-colors`}>
+                                   <div key={i} className={`flex flex-col md:items-end md:text-right items-start text-left bg-white/5 border border-white/5 p-4 rounded-xl group-hover:bg-white/10 transition-colors`}>
                                       <h5 className="text-sm font-bold text-gray-200">{node.role}</h5>
                                       <p className="text-xs text-gray-400 mt-1">{node.company}</p>
                                       <span className={`text-[10px] font-mono mt-2 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 ${category.theme.companyText}`}>{node.duration}</span>
@@ -666,7 +729,7 @@ export default function Portfolio() {
 
                              <div className="flex flex-col gap-3 w-full">
                                 {category.nodes.map((node, i) => (
-                                   <div key={i} className={`flex flex-col items-start text-left bg-white/2 border border-white/5 p-4 rounded-xl group-hover:bg-white/4 transition-colors`}>
+                                   <div key={i} className={`flex flex-col items-start text-left bg-white/5 border border-white/5 p-4 rounded-xl group-hover:bg-white/10 transition-colors`}>
                                       <h5 className="text-sm font-bold text-gray-200">{node.role}</h5>
                                       <p className="text-xs text-gray-400 mt-1">{node.company}</p>
                                       <span className={`text-[10px] font-mono mt-2 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 ${category.theme.companyText}`}>{node.duration}</span>
